@@ -1,15 +1,124 @@
 <html>
     <head>
         <title>:^3</title>
-
+        <link href="style.css" rel="stylesheet"> <!--anche lui è senza contenuti, non serve chiusura
+        rel stabilisce relazione, stylesheet sto allegando un foglio di stili per il testo; 
+        il browser capisce che .css è stile, quindi non serve scrivere rel-->
+        <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrUkU-_Rmi6oxSeTB5_5fkySo_S5NxCemXKQ&s">
+        <!--scrivo rel='icon' prima perchè url è lungo e non posso andare a capo-->
+        <style>
+            .testo.rosso {
+                color:red;
+            }
+        </style><!--mi permette di dare regole nella testa e mi cambia di conseguenza le classi a cui mi riferisco
+        tuttavia l'attributo style è più importante e resta uguale-->
     </head>
     <body>
         
 
-        <h1>Hello World!
-            <p class="testo principale" >
-                lorem ipsum..
-            </p>
+        <h1>Hello World! <br />
+            <!--un testo non dovrebbe sbordare a destra, giusto per comodità di lettura, ma non è una
+            regola ferrea(ciò chiaramente non vale per gli url che sbordano per forza).
+            andare a capo nel codice se scrivo un testo non si riflette in un andare a capo nel browser,
+            un a capo equivale a uno spazio-->
         </h1>
+            <a href="#sezione 2">vai a sezione 2</a>
+
+            <p class="testo-rosso" >
+
+                <div> <!--serve per 'andare a capo', funzionalmente mi permette di organizzare la pagina-->
+
+                    lorem <span>ipsum</span> yep yep..
+
+                </div>
+                <p>
+
+                </p>
+                
+                    Sed ut <b>perspiciatis unde omnis</b> iste
+                     <strong>natus</strong>
+                     <!--strong è come il bold, ma serve per google per fargli capire il contenuto, è il grassetto ogni tanto per migliorare la lettura
+                     a livello pratico equivale al b--> 
+                     <i>error sit</i> voluptatem <u>accusantium doloremque</u> <br/> 
+                    <p>
+
+                    </p>
+                    <p>
+                        <div>
+
+                            <img src="https://placeholder.pics/svg/300/4CFF42-FFF008/FFF6F5" width="300" heigh="300" alt="Descrizione dell'immagine"> 
+                            <!--imposto la pagina con un buco per l'immagine specificando le dimensioni,
+                            poichè google penalizza lo shift del testo in base al caricamento delle immagini
+                            inoltre è meglio se lo scrivi come tag immagine in un file html, poichè prima viene html poi css
+                            poi in alt è meglio descrivere l'immagine, per ipovedenti e perchè google penalizza se non lo fai
+                            Infine il tag immagine è in linea, se metto più immagini vengono accanto l'una con l'altra, finchè c'è spazio nella pagina-->
+                            <img src="https://placeholder.pics/svg/300/4CFF42-FFF008/FFF6F5" width="200" heigh="200" alt="Descrizione dell'immagine">
+                        </div>
+                    </p>
+                    <!--tag <b> grassetto, <i> corsivo e <u> sottolineato;
+                        ormai stanno scomparendo però, poichè sono solo tag di formattazione e non di contenuti
+                        funzionano ancora ma se riesci evita, ad esempio <i> viene usato per mettere icone-->
+                    laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+                
+                <h2 id="sezione 2" style="color:red"> Sezione 2 <!--mi da regole di stile, tra cui colore-->
+                  
+                </h2>
+
+                <p>
+                Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat <!--span è un tag in linea che racchiude una porzione di testo, fine-->
+                
+                </p>
+
+                
+                
+            </p><!--buona norma non mettere un paragrafo dentro uno span, cioè un tag in blocco dentro uno in linea(ma possiamo rompere
+            la regola tranquillamente se serve)-->
+            
+            <ul>
+                <li>elemento1</li>
+                <li>elemento2</li>
+                <li>elemento3</li>
+                <li>elemento4</li>
+                <li>elemento5</li>
+                
+            </ul><!--unordered list, lista coi pallini non numerata-->
+            
+            <ol>
+                <li>elemento6</li>
+                <li>elemento7</li>
+                <li>elemento8</li>
+                
+            </ol><!--ordered list, lista numerata(mette automaticamente i numeri davanti, metti solo i contenuti);
+            tra le 2 liste si genera automaticamente uno spazio bianco-->
+            
+            <a href="sottocartella/pagina 2.html">vai a pagina 2</a> <br/>
+            <a href="sottocartella/pagina 2.html" target="blank">pagina 2 in nuova scheda</a><br/>
+            <!--posso mettere dentro target:blank(si apre in una nuova scheda, fondamentale se porta in un sito esterno), parent, self, top-->
+            <a title="ti dico cosa c'è dentro" href="sottocartella/pagina 2.html">vai a pagina 2 ma ti dico cosa ho se metti sopra il cursore</a><br/>
+            <p></p>
+            <button>
+                pulsante
+            </button> <!--devo specificare attrributi di javascript, perchè sto interagendo con l'utente
+            ie. onclick='', title='vai a..',-->
+            <button disabled>
+                pulsante non cliccabile
+            </button> <!--NON FARE AFFIDAMENTO, se apro ispeziona in una pagina e cancello 'disabled', il pulsante torna attivo nel client dell'utente-->
+
+
+
+            <p> <!--questa dicitura mi permette di lasciare una riga vuota nel testo-->
+            </p>
+
+            <a class='testo rosso' style="color:red" href='#'>torna su</a> <!--<a> è il tag dei link, per farlo diventare di collegamento devo indicargli la destinazione;
+                devo indicare gli attributi, ie. class, sono racchiusi da <bla class='testo'> -->
+                    <!--href='url' è il solito attributo dei link, dopo di lui metto il nome da linkare-->
+                    <!--href='#' mi fa andare in cima alla pagina, se poi gli fornisco un id mi porta alla sezione scelta-->
+
+            <footer>
+                piè di pagina
+            </footer> <!-- invece di scrivere div id=footer, idem per main=corpo testo, header, nav per il menu.
+            tutto questo perchè erano div con id usati molto spesso e sono stati promossi a tag-->
+
+        
     </body> <!--eccoci dentro, <p>lorem ipsum..</p>-->
 </html>
