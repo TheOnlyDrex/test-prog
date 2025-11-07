@@ -1,0 +1,49 @@
+
+/*cosi è il commento in css*/
+
+p {
+    color:blue;
+} /* apro con p in modo che tutti i paragrafi siano di quel colore*/
+
+.testo-rosso {
+                color:rgb(255, 0, 0);
+            }
+/*nome tag, classe e id hanno questo ordine di priorità crescente, non valuto l'ordine dei comandi*/
+
+#sezione-2 {
+    color:purple
+} /*per gli id*/
+
+a.testo-rosso {
+    color:brown
+
+}/*tutti gli elementi a di classe testo rosso*/
+
+a.testo-rosso.testo-marrone {
+    color:darkred
+
+}/*tutti gli elementi a di classe testo rosso e di classe testo marrone (entrambe)*/
+
+/*Regola di specificità dei tag: id=centinaia, classe=decine, tag=unità:
+1 id e 1 classe=110. 1 id e 1 tag= 101, 2 classi e 1 tag=021, 1 classe e 1 tag=011. Questo mi serve per selezionare tutti gli elementi di una discendenza
+Se ho specificità uguale= Regola a Cascata: vale l'ultima regola messa(se sono nello stesso file è quello in basso, se ho file diversi ha priorità
+l'ultimo file caricato*/
+
+p.testo-principale a {
+    color:yellow
+} /*leggi da dx a sx= tutti gli elementi a racchiusi in testo principale
+serve per colorare pezzi specifici di testo
+Discendenza indiretta ie nipote-nonno*/
+
+p.testo-principale >a {
+    color:yellow
+}
+/*discendenza Diretta*/
+
+p > * {
+    color:green
+}/*tutti i discendenti figli di un paragrafo*/
+
+a:hover {
+    color:aquamarine;
+}

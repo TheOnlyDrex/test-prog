@@ -1,0 +1,71 @@
+/*colora di rosso tutti gli elementi di tipo span*/
+
+span {
+    color:red;
+}
+
+/*colora di blu gli span dentro un paragrafo (discendenza indiretta*/
+
+p span {
+    color:blue;
+}
+
+/*colora di verde <span class="classe-1">semper vel</span>*/
+
+div#sezione-1 > p.classe-1 span.classe-1 {
+    color: green;
+}
+
+
+/*colora <p class="classe-1">
+                    Duis vitae ullamcorper nunc. <span class="classe-2">Morbi risus</span>
+                    nulla, pharetra id volutpat ac, <span class="classe-1">semper vel</span> tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus molestie cursus odio, quis ornare sapien maximus et. Vivamus ex nisi, pharetra sit amet congue non, lobortis ut justo. In pretium mollis sagittis. In euismod augue quis faucibus dictum. Sed pulvinar lacinia suscipit.
+                </p>
+di viola*/
+
+div.sezione-2 p.classe-1{
+    color:purple;
+
+}/* oppure il piu semplice è .sezione-2 .classe-1 cioè 'tutti gli elementi di classe-1 dentro sezione-2 sono viola. ho fatto specificità 22 vs 20*/
+
+/*colora <a href="#">eget congue</a> di giallo se passi sopra col mouse*/
+a:hover {
+    color:yellow;
+} /*hover presuppone un mouse, da telefono non va e vado direttamente al link. ma se ho una scheda interattiva/interazione statica che ad esempio 
+ruota la scheda allo scorrimento del mouse, da telefono posso toccare e attiva lo stato di hover
+Qualunque elemento html può avere lo stato di over (div, p, h)*/
+
+p.classe-2:hover {
+    color:white;
+} /* andava bene anche solo p.classe-2, tanto c'è solo lui*/
+
+/* :not() esclude un pezzo, usalo il meno possibile perchè è pesante a livello di elaborazione. Usalo senza abusarne*/
+.sezione-2 > p:not(classe-1) {
+    color:orange;
+}
+
+/*
+.sezione-2 >p.first-child {
+
+} mi prende il primo figlio direttamente, non prende tutto e poi va ad escludere come il not. Esiste anche il LAST CHILD.
+ E' il primo figlio dell'elemento, non il primo paragrafo o il primo div o altro. anche se ho messo la p e prima ho un div. E' quello il problema,
+ fa attenzione a first/last child
+ */
+
+/*
+l'ennesimo figlio si indica con :nth-child(numero del bambino in cifre). first-child è equivalente a nth-child(1)
+E' particolare perchè posso inserire un espressione all'interno dell'argomento, ie 2n (o even) e 2n+1 (o odd)
+*/
+
+ul li:first-child {
+    color:yellow;
+}
+li:nth-child(even) {
+    color:green;
+}
+li:nth-child(odd){
+    color:red;
+}
+/*
+con la virgola posso applicare la stessa regola a più selettori. Puoi anche andare a capo dopo una virgola e avere un singolo selettore per riga
+*/
