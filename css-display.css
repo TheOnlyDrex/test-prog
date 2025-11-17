@@ -1,0 +1,74 @@
+div > *:nth-child(1) {background-color: yellow;}
+div > *:nth-child(2) {background-color: rgb(255, 196, 0);}
+div > *:nth-child(3) {background-color: rgb(221, 0, 0);}
+div > *:nth-child(4) {background-color: rgb(124, 1, 1);}
+
+div.inline > * {
+    display:inline;
+}
+
+div.block > * {
+    display:block;
+}
+/*
+  dico ad un tag blocco di diventare linea e viceversa
+*/
+
+div.inline-block > *{
+    display:inline-block;
+    width:50px;
+}
+
+.none{
+    display: none;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.opacity1 {
+    opacity: 0;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: wrap; /*gli dico di andare a capo se la pagina finisce*/
+}
+
+.center {
+    justify-content: center;
+}
+/*
+  In justify-content metto center, start (da dove inizio), end (dove arrivo)
+  non metto left or right (comunque giusto) perchè se poi voglio invertire l'ordine del documento
+  poi mi sballa
+*/
+
+.flex-direction{
+    flex-direction: row-reverse;
+}
+
+.align-start{align-items: start;} /*sposta sotto*/
+.align-center{align-items: center;} /*centra*/
+.align-end{align-items: end;} /*estende lo sfondo colorato*/
+.align-stretch{align-items: stretch;}
+.align-baseline{align-items: baseline;} /*allinea non al centro ma alla base del testo*/
+
+.justify-evenly{justify-content: space-evenly;} /*spazi iniziali, interni e finale larghi uguali*/
+.justify-around{justify-content: space-around;} /*come evenly solo che primo e ultimo spazio sono la metà degli interni*/
+.justify-between{justify-content: space-between;} /*elimina i spazi laterali*/
+
+.grow{
+    flex-grow: 1;
+}
+/*
+  se do un valore numerico assegno prio: quelli con prio designata avranno prio
+  quelli senza prio non prendono niente, quelli con prio minore prendono in proporzione
+  un certo spazio
+*/
+
+/*
+  CSS grid generator, ie 'layoutit' per le griglie:
+  Disegno la tabella, generano css che poi importo al mio doc di css
+*/

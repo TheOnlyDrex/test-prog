@@ -1,0 +1,33 @@
+div > *:nth-child(1) {background-color: yellow;}
+div > *:nth-child(2) {background-color: rgb(255, 196, 0);}
+div > *:nth-child(3) {background-color: rgb(221, 0, 0);}
+
+.flex-between{
+    justify-content:space-between;
+}
+
+.flex{
+    display:flex
+}
+
+.grow1{
+    flex-grow: 1;
+}
+
+.grow2{
+    flex-grow: 3;
+}
+
+.center {
+    justify-content: center;
+}
+
+.start{
+    justify-content: start;
+}
+.end{
+    justify-content: end;
+}
+.align-text{
+    align-content: center;
+}
