@@ -1,0 +1,134 @@
+/*
+  Regole principali CSS
+  (W3S è un bel sito, guardalo)
+*/
+
+/*
+  Quando usiamo i colori, userò il codice che lo rappresenta invece del suo nome, valore RGB o ancora meglio il codice Esadecimale
+  3 valori uguali sono una scala di grigio, prima cifra più alta sarà una scala di rosso, seconda più alta una scala di verde, ultima cifra
+  alta è una scala di blu; rosso+verde=giallo, verde+blu=ciano, blu+rosso=magenta, ecc.
+
+  !EVITA di usare il bianco e nero, perchè negli schermi pixel acceso al massimo (bianco) accanto a pixel spento (nero) da molto fastidio; se 
+  proprio vuoi il bianco e nero non usare la variante pura, usa la scala e attenua il fastidio agli occhi.
+*/
+
+p {
+    color:#fff; /*colore testo*/
+    background-color: aqua; /*colore sfondo*/
+}
+
+/*
+  Famiglia dei font: quando scelgo un carattere non ne scelgo uno singolo, ma una famiglia di font
+  Principalmente 2: Con le grazie o Senza le grazie (con decorazione o senza) (times new roman vs arial)
+  Preché famiglia di font? Prendi ad esempio il font Ubuntu: se non ho linux non lo posso vedere, per questo è sempre bene specificare una o più
+  alternative di font: specifico la macrofamiglia di font serif o sans serif (ma posso anche specificare più font separati da virgola e il pc 
+  usa il primo che trova se lo riesce a rappresentare
+  Posso anche creare o importare da internet una famiglia di font
+  
+  ie. Google font; specifico il font nell'head dell'html e allora posso chiamare il font nel css
+*/
+
+p {
+    font-family:nome_font_1, nome_font_2, nome_famiglia_completa /*(=serif o sans-serif)*/; 
+}
+
+/*
+  Dimensione del carattere
+  Definibile in pixel (dimensione minima consigliata 14-16px) o em/rem: cioè un moltiplicatore della dimensione data precedentemente
+  EM: cerca la grandezza subito precedente (stackabile)
+  REM: cerca la prima dichiarazione esplicita e salta i moltiplicatori precedenti
+  Utili per siti responsive (una grandezza per i pc, un altra per i smartphone, tv 4k uso una più grande, e così via)
+  Specifica il primo font all'inizio del body
+
+  Spessore/Peso del font
+  Va da 100 a 900, con intervalli di 100: più è pesante più sarà spesso nel documento. Lo standard è 400, 700 è il grassetto, il 900 è il 'nero',
+  cioè il più spesso possibile.
+  Ricorda che puoi dichiarare una dimensione solo se quel font lo prevede. Se non la trova prene quella disponibile più vicina (400 o 700)
+  Invece di scrivere ogni volta il valore, posso usare la parola chiave: bold per mettere grassetto e normal per togliere il grassetto 
+
+  Applicare il corsivo
+  italic per applicare e normal per togliere
+*/
+
+body{
+    font-size: 16px;
+}
+
+p{
+    font-size: 1,5rem;
+    font-weight: 100;
+    font-style: italic;
+}
+
+/*
+  Regole di testo
+
+  Decorazione del testo:
+  Sottolineatura: underline, Testo barrato: line-through, Sovralineatura: Overline (usato raramente).
+  Per eliminare una decorazione specifico 'none': text-decoration: none
+  
+  Allineamento del testo
+  Di default a sx per schermi di lettura da sx a dx; di vari tipi: left, right, center, justify
+  Il testo giustificato lo limitiamo a piccoli elementi, evitalo per un intero articolo (è il testo classico spalmato dei libri), idem con il
+  testo centrato (tranne per esempio per il testo di una canzone)
+
+  Trasformazione del testo
+  Nell'html scrivo tutto minuscolo, do le specifiche delle maiuscole direttamente nel css (altrimenti per nuove implementazioni devo modificare
+  a MANO ogni stringa in ogni pagina, addio
+  Ho uppercase (tutto maiusc), undercase (tutto min) e capitalize (prima lettera maiuscola di ogni parola)
+*/
+
+p{
+    text-decoration: underline;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*
+  Formattazione di liste
+  list-style permette di specificare più cose, ma l'utilizzo quotidiano è quello di eliminare la visualizzazione standard della lista 
+  (tolgo i pallini ad esempio per mettere il mio simbolo per lista)
+  list-style-type (circle, square, o quello che voglio)
+
+  Buona norma per fare un menù di navigazione è farlo come lista, poi elimino i pallini
+*/
+
+ul {
+    list-style-type:circle;
+}
+
+/*
+  Per prassi do al mio body le regole standard per eventuali titoli, paragrafi, link, ecc., poi mano a mano le vado a richiamare o modificare
+*/
+
+/*
+  Regole di spaziatura
+  Dobbiamo poterci staccare dal bordo, un testo attaccato fa pena
+
+  margin è lo spazio esterno, serve per staccarsi al bordo. Se specifico solo 1 valore si spazia dello stesso valore da 4 direzioni (sopra, sotto,
+  destra e sinistra), se do 2 valori il primo è sopra-sotto, il secondo è destra-sinistra, se do 4 valori specifico per ogni verso la spaziatura
+  che voglio. 
+  NB margin: è equivalente a margin-top:, margin-right:, margin-bottom:, margin-left: con lo stesso valore 
+  
+  padding da la spaziatura all'interno dell'elemento, ie spaziare del testo dal suo sfondo colorato. 
+  I margin top-bottom si sovrappongono, non si sommano e vince il valore più grande: ie bottom 50px e top 70px, la spaziatura tra le righe 
+  non è 120 nè 50, ma 70.
+  Questo lo posso customizzare con padding, con margini interni. margin+padding si sommano
+
+  I titoli hanno margin predefiniti, se voglio avvicinare 2 titoli devo ridurre il bottom del precedente e ridurre il top del seguente
+
+  Quando il margin riguarda top o bottom, viene applicato fuori dal suo contenitore: ie dentro un div ho un titolo e voglio spaziare il titolo,
+  la spaziatura del titolo mi spazia di conseguenza anche il div genitore
+
+  border mi da un bordo al mio contenitore. Valgono le stesse regole precedenti di assegnazione di valori.
+  Il bordo è una terna di informazioni: colore, spessore e stile del bordo.
+  Anche se non ci interessa sapere quali sono gli stili, se non mettiamo anche solo quello classico il bordo non si vede. 
+  Metti solid e via:
+  border: solid 1px #111      
+  posso anche separare le regole.
+  border-style
+  border-width Se lo specifico così posso usare top, bottom, left or right, altrimenti no. poi posso dare regole specifiche se specifico così
+  border-color
+
+*/
+
