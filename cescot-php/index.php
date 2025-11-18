@@ -161,3 +161,4 @@ meno non gli cambia, ma per non sapere ne leggere ne scrivere lascialo aperto
   Concatenazione di stringhe: metto il punto e mi posso risparmiare un echo ad esempio
   Se concateno stringa e numero in php succedono cose:
   -se concateno numero e stringa vuota ottengo il numero trasformato in stringa
+*/
