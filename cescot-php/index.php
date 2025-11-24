@@ -151,6 +151,7 @@
     if($voto==10) {
         echo"eccellente";
     }
+    echo"</br>";
     //guarda anche la soluzione che è interessante
 
 /*la documentazione di wordpress dice che consiglia di non chiudere il tag php per una serie di motivi, ora sia che lo chiudo o 
@@ -162,3 +163,147 @@ meno non gli cambia, ma per non sapere ne leggere ne scrivere lascialo aperto
   Se concateno stringa e numero in php succedono cose:
   -se concateno numero e stringa vuota ottengo il numero trasformato in stringa
 */
+?>
+
+<?php
+    echo "<h2> Esercizio 2</h2>";   
+
+    $voti=[6,7,7.5,4,9,8];
+    $somma=0;
+    $num_voti=0;                         // $i++ è uguale a $i = $i + 1
+
+    for ($i=0; $i < count($voti); $i++): //3 parametri: contatore, limite, incremento
+        
+        $somma=$somma + $voti[$i];
+        $num_voti++;
+    endfor;
+    
+    echo "La media dei voti è: " . $somma/$num_voti ;
+    echo "</br>";
+
+
+
+    //Voglio vedere se in un array c'è un determinato numero
+    $numero=45;
+    $valori=[1,3,6,76,34,56,90,45,2,12];
+    //Uso il ciclo while, rispetto a for scrivo solo la condizione
+    $i=0;
+    $trovato=false; //scrivo sta roba se no mi mette una serie di warning per variabile non dichiarata all'inizio, ma non è necessarios
+    while(!$trovato): //Lett: finchè non lo hai trovato
+        if($valori[$i]==$numero):
+            $trovato = true;
+        endif;
+        $i++;
+    endwhile;
+
+    if($trovato):
+        echo $numero. " è presente nell'array";
+    else:
+        echo $numero. " non è presente nell'array";
+    endif;
+    echo"</br>";
+    /*se però cerco un valore che non c'è, il ciclo while va a infinito e mando in crash il sistema
+      Verifica sempre una condizione di uscita per evitare questo i.e. while(!$trovato && $i<count($valori)):
+      (tranne ad esempio fare un ciclo finchè il programma è acceso)
+      Posso farlo comunque con un ciclo for, sono sempre intercambiabili tra di loro
+
+      Posso usare anche break; sotto una condizione per arrestare il ciclo
+    
+    */
+//Costrutto switch
+
+$settimana=["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+
+for($i=0; $i<count($settimana);$i++):
+    switch($settimana[$i]):
+        case "monday":
+            echo"lunedi ";
+            break;
+        case "tuesday":
+            echo"martedi ";
+            break;
+        case "wednesday":
+            echo"mercoledi ";
+            break;
+        case "thursday":
+            echo"giovedi ";
+            break;
+        case "friday":
+            echo"venerdi ";
+            break;
+        case "saturday":
+            echo"sabato ";
+            break;
+        case "sunday":
+            echo"domenica";
+            break;
+        endswitch;//se non metto il break, lui continua ad iterare togliendo il primo elemento. posso scrivere al posto di case -> default e dare una regola di default
+    endfor;
+
+
+
+
+/*
+importante documentare le funzioni:
+si aprono con slash asterisco asterisco, ecco cos'è quella roba strana sopra la funzione
+*/
+
+
+/**
+ * Calcola la media aritmetica dei voti
+ * 
+ * @param float[] $voti dello studente
+ * 
+ * @return float La media aritmetica dei voti
+ */
+function calcola_media($voti) {
+    $somma=0;
+    for($i=0; $i<count($voti);$i++):
+        $somma+=$voti[$i];
+    endfor;
+    $media=$somma/count($voti);
+    return $media;
+}
+$persone = [
+    array(
+        "nome" => "mario",
+        "età" => 19,
+        "voti"=>[3,7,6,10]
+    ),
+    array(
+        "nome" => "lucia",
+        "età" => 14,
+        "voti"=>[5,7,4,2,6,9]
+    ),
+    array(
+        "nome" => "alfredo",
+        "età" => 7,
+        "voti"=>[5,7,9,4,3,7,8,6]
+    ),
+    array(
+        "nome" => "luca",
+        "età" => 39,
+        "voti"=>[7,8,9,9,10,8.5]
+    ),
+    array(
+        "nome" => "giacomo",
+        "età" => 22,
+        "voti"=>[7.5,8,5,5,8,9,6.5]
+    ),
+    array(
+        "nome" => "carla",
+        "età" => 89,
+        "voti"=>[5,6,7,8,8,8,9]
+    ),
+];
+
+foreach ($persone as $studente) :
+    $media=calcola_media($studente['voti']);
+    echo $studente['nome'] . " ha la media di ".$media. ": ";
+    if($media>6):
+        echo "Promosso.";
+    else:
+        echo "Bocciato.";
+    endif;
+endforeach;
+
