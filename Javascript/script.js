@@ -53,7 +53,11 @@ console.log(++c);
 console.log(a>b);
 console.log(!(a>b)); //!=not, &&=and, == è uguaglianza per valore, === è uguaglianza per tipo; non c'è xor (unlucky i guess)
 
+
+
 //Fun fact: nel console log ti evidenzia la riga di codice che ha stampato il messaggio
+
+
 
 //Concatenazione
 console.log(stringa1 + stringa2); 
@@ -81,3 +85,45 @@ var oggetto = {
     "undefined": undefined //indefinito e viene troncato
 };
 //occhio che tecnicamente sono diversi, hanno uguaglianza == ma non === anche se sono entrambi falsi
+
+
+//Controlli di flusso
+/*var numero = window.prompt("inserisci numero");
+if (numero%2==0) {
+    window.alert("numero pari");
+} else {
+    window.alert("numero dispari");
+}
+    */ 
+
+//rimuovi dicitura commento per provare
+
+/*
+var mese =window.prompt("metti numero del mese"); //fatto solo per gennaio ma puoi continuare con tutti i mesi
+switch (mese) {
+    case "1":
+        window.alert("gennaio");
+    break;
+}
+*/
+
+console.log(document.getElementById("elemento-1"));
+console.log(document.getElementsByClassName("elementi"));
+console.log(document.getElementsByTagName("p"));
+
+console.log(document.querySelector('.elementi'));
+console.log(document.querySelectorAll('.elementi'));
+
+var lista = document.getElementById("genitore");
+console.log(document.getElementsByClassName("figlio"));
+
+//Inserisci il codice html nell'elemento
+lista.innerHTML = "<li>1</li><li class='figlio'>2</li>";
+console.log(lista.getElementsByClassName('figlio'));
+
+lista.innerText = "<li>1</li><li class='figlio'>2</li>";
+console.log(lista.getElementsByClassName('figlio'));
+
+//Funzioni
+//Letteralmente uguale a php
+
