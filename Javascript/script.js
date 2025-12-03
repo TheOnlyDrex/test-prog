@@ -127,3 +127,50 @@ console.log(lista.getElementsByClassName('figlio'));
 //Funzioni
 //Letteralmente uguale a php
 
+//Cicli
+var voti = [4,6,7,8,6,8];
+
+/*for (let i = 0; i < voti.length; i++) { //praticamente uguale a php, unica diff è che in php ho la funz count, qua ho una proprietà. 
+                                        //Una proprietà non ha le parentesi come le funz; .lenght è proprietà dell'array, count è un calcolo da fare
+    somma+=voti[i];
+}
+console.log('media = '+ (somma/voti.length));
+
+*/
+
+var numero = window.prompt('inserisci un numero');
+var elementi=[1,2,3,4,6,8,9];
+
+let i = 0;
+let trovato = false;
+
+while (!trovato && i<elementi.lenght) {
+    if (numero = elementi[i]){
+    trovato = true;
+    }
+    i++;
+}
+
+//Generazione di numeri casuali (tra le varie funzioni)
+
+let casuale = Math.random()//ritorna decimali da 0-1, devo fare degli accorgimenti
+//let num_non_arrotondato = Math.random() * 10;
+//let num_arrotondato = Math.floor(num_non_arrotondato);
+//floor arrotonda per difetto, ceiling per eccesso
+
+//Altri cicli; ie foreach
+var array = [1,2,3,4];            //è un array
+var oggetto = {                   //è un oggetto
+    nome: "mario",
+    cognome: "rossi"
+};
+    //abbiamo scritto questa differenza perchè ci sono 2 cicli; 1 per ciclare le proprietà di un oggetto, l'altro per ciclare gli elementi di un array
+
+//Ciclo per array 'for of'
+for (valore of array){
+    console.log(valore);
+}
+//Ciclo per oggetti 'for in'
+for (chiave in oggetto){    // QUESTO CICLO RITORNA SOLO LA CHIAVE, sta a me poi usarlo come si deve
+    console.log(oggetto[chiave]);//con questa dicitura posso prendere il valore assegnato alla chiave
+}
