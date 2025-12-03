@@ -21,6 +21,48 @@
         <li>3</li>
         <li class="figlio">4</li>
     </ul>
+
+    <button id="click-me-button">vieni</button>
+
+    <form action="#" method="post">
+        <input type="text" placeholder="es: Mario" value="Valore" required  disabled/></br><!--occhio che se metto l'attributo required in html lo posso cancellare quando voglio. 
+        è solo una prevalidazione, è il server che deve validare. è solo un aiuto per l'utente
+        Discorso per disabled solito-->
+        <input type="email" placeholder="mail"/></form></br><!--controlla testo chiocciola testo punto testo-->
+        <input type="password" placeholder="password"/></br>
+        <input type="tel" placeholder="01234567789"/></br>
+        <input type="number" placeholder="numero"/></br>
+        <input type="date" placeholder=""/></br>
+        <input type="time" placeholder=""/></br>
+        <input type="file" placeholder=""/></br>
+
+        <input type="radio" name="radio-1" value="val-1" id="radio-1-1"/>
+        <label for="radio-1-1">alfredo</label></br> <!--cio che ho fatto e per rendere cliccabile il nome  enon solo il pallino, lo faccio dando a input type radio un id, poi una label con quell'id-->
+        <input type="radio" name="radio-1" value="val-2"/>valore2</br><!--per collegarli gli dai lo stesso nome-->
+        <input type="checkbox" id=" privacy" required/>
+        <label for="privacy">ho letto la privacy</label></br>
+
+        <select>
+            <optgroup>
+                <option>
+                    opzione1
+                </option>
+                <option>
+                    opzione2
+                </option>
+            </optgroup>
+        </select></br>
+
+
+        <textarea></textarea></br><!--MI PERMETTE DI SCRIVERE PIù RIGHE-->
+        <button type="submit">invia</button>
+        
+
+    </form>
+    <!--
+    action è la destinazione di invio dei dati, se non lo metti prende come riferimento se stessa; con # ignoro
+    method indica la tipologia di modulo: post o get. se l'utente invia dei dati uso post, get espone i dati richiesti sull'url
+    -->
     
     <script src="script.js"></script> <!--Non è autochiudente, al posto di legare un file posso scrivere direttamente dentro codice js-->
     <!--dovrebbe stare nell'head ma se lo metto in fondo allegerisco il caricamento della pagina e il documento che allego riesce a trovare

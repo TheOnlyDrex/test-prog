@@ -137,7 +137,7 @@ var voti = [4,6,7,8,6,8];
 console.log('media = '+ (somma/voti.length));
 
 */
-
+/*
 var numero = window.prompt('inserisci un numero');
 var elementi=[1,2,3,4,6,8,9];
 
@@ -150,6 +150,7 @@ while (!trovato && i<elementi.lenght) {
     }
     i++;
 }
+*/
 
 //Generazione di numeri casuali (tra le varie funzioni)
 
@@ -174,3 +175,15 @@ for (valore of array){
 for (chiave in oggetto){    // QUESTO CICLO RITORNA SOLO LA CHIAVE, sta a me poi usarlo come si deve
     console.log(oggetto[chiave]);//con questa dicitura posso prendere il valore assegnato alla chiave
 }
+
+/*
+Eventi
+se cerchi online eventi javascript ti esce un elenco, ovviamente ci sono quelli usati più o meno spesso
+
+
+*/
+var clickmebutton = document.getElementById("click-me-button");
+clickmebutton.addEventListener('mouseenter', function(){//funzione che esegue se stessa, è una funzione anonima
+    clickmebutton.style.left=Math.random()*100+"%";
+    clickmebutton.style.top=Math.random()*100+"%";
+})
