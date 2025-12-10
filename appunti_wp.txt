@@ -1,4 +1,4 @@
-skip-grant-system nei config di sql da xampp
+skip-grant-table nei config di sql da xampp
 
 # The MySQL server
 default-character-set=utf8mb4
@@ -100,3 +100,40 @@ In Plugin, trovo Hello Dolly, un minimo plugin funzionante.
 
 Il Tema è il responsabile della grafica del sito, ma oggigiorno è più in mano a noi 
 (stesso discorso dei plugin; se aggiungo o tolgo cartelle lo vedo anche dalla bacheca di WordPress)
+
+teamforest.net è il riferimento per temi di WordPress a pagamento (sempre comunque ragionevoli, acquisto una tantum)
+
+Presta attenzione 
+    -alle recensioni di un tema
+    -verifica se è vivo o morto (può essere che i vecchi temi non funzionino più post aggiornamento di WordPress)
+     Come faccio: 
+        1)guardo il numero di vendite (più è alto più è probabile che sia vivo)
+        2)ultima data di aggiornamento (più è recente meglio è, 6 mesi è borderline, oltre evita)
+        3)quando è stato creato (in concomitanza col punto 2)
+        4)guarda le demo per vedere cosa il tema è in grado di fare
+
+
+Con un tema a pagamento sono vincolato al suo team di sviluppo, se lo faccio io sono vincolato solo alla mia voglia
+
+Sezione articoli, apro l'articolo di default Ciao Mondo e mi si apre l'editor dell'articolo.
+
+Stiamo vedendo la barra di destra dell'editor, unica cosa da ricordare è lo slug, cioè l'url della pagina
+E' fortemente consigliato modificarlo prima della pubblicazione, perchè dopo devo comunicare al motore di
+ricerca il cambiamento della pagina. Un casino. Non farlo. Grazie.
+
+La libreria Media a differenza di plugin o temi, non è legata alla cartella di WordPress, almeno direttamente
+Ad esempio se carico un'immagine piccola la vedo in cartella, ma se carico un'immagine pesante da WordPress 
+nella cartella mi appaiono una serie di immagini con diverse risoluzioni. 
+Se cancello da cartella non mi cancella dal Media di WordPress, ma è vero il contrario:
+se cancello da Media di WordPress allora cancella tutti i file dalla cartella.
+
+Nota: il tema o immagini non modificano il database mentre i plugin si
+
+I plugin del repo di WordPress sono gratis, i plugin fuori dal repo di WordPress sono a pagamento
+Spesso nel repo mettono una versione freemium con alcune funzionalità bloccate, con link al sito del team del plugin
+dove puoi comprare il plugin ad un tasso annuale
+
+!!!!
+    metatitle, metadescription, solo 1 h1, rispettare l'ordine degli h, dimensione del sito, link che re-indicizzano a
+    siti autorevoli, e tanti altri parametri conosciuti e sconosciuti influiscono sulla SEO 
+!!!!
