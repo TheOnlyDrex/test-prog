@@ -1,0 +1,102 @@
+skip-grant-system nei config di sql da xampp
+
+# The MySQL server
+default-character-set=utf8mb4
+[mysqld]
+skip-grant-table
+port=3306
+socket="C:/xampp/mysql/mysql.sock"
+basedir="C:/xampp/mysql"
+tmpdir="C:/xampp/tmp"
+datadir="C:/xampp/mysql/data"
+pid_file="mysql.pid"
+# enable-named-pipe
+key_buffer=16M
+max_allowed_packet=1M
+sort_buffer_size=512K
+net_buffer_length=8K
+read_buffer_size=256K
+read_rnd_buffer_size=512K
+myisam_sort_buffer_size=8M
+log_error="mysql_error.log"
+
+poi apriamo la cartella di wordpress da localhost
+
+aruba ed ergonet sono host per siti (ie con aruba confronta hosting linux e hosting wp=>linux + db.
+se il db lo faccio io risparmio un po, tutto qua)
+
+Se apro la cartella wp ottengo:
+
+    "Ti diamo il benvenuto in WordPress. Prima di iniziare, devi conoscere i seguenti dati.
+
+    Nome del database
+    Nome utente del database
+    Password del database
+    Host del database
+    Prefisso tabelle (se desideri eseguire più WordPress con un solo database)
+    Queste informazioni sono utilizzate per creare il file wp-config.php. 
+    Se per qualsiasi motivo la creazione automatica del file non va a buon fine, non ti preoccupare. 
+    Questo passaggio non fa altro che inserire le informazioni del database in un file di configurazione. 
+    Puoi aprire wp-config-sample.php in un editor di testo, inserire i tuoi dati e salvarlo come wp-config.php. 
+    Serve ancora aiuto? Leggi l'articolo di supporto su wp-config.php.
+
+    Con ogni probabilità, queste informazioni ti sono state già fornite dal tuo fornitore di hosting. 
+    Se non disponi di queste informazioni, dovrai contattarlo prima di poter proseguire. 
+    Se invece è tutto pronto…
+
+    Iniziamo!"
+
+! Vedi come funziona FileZilla
+
+Torniamo a wp aperto in localhost:
+    -nome db quello che ho appena creato su phpMyAdmin,
+    -nome utente root,
+    -pw vuota,
+    -host metto localhost a meno che il provider non mi dia un altro valore,
+    -prefisso tabella è il campo che wp usa per identificare le tabelle all'interno del suo db;
+     wp_ è lo standard ma è vittima di sql_injection, metto un mini-codice diverso e la injection è
+    più difficile. è solo una minima misura di sicurezza (messo dn_)
+
+Se vado avanti ottengo:
+    Ottimo lavoro! Hai completato questa parte dell'installazione. Ora WordPress può comunicare con il database. 
+    Se è tutto pronto…
+
+    Avvia l'installazione
+
+Dopodichè mettiamo:
+    -nome del sito (si cambia senza problemi dalle impostazioni): messo semplicemente 'il mio sito'
+    -nome utente: Dennis
+    -pw: LS4LWVHaKe7J2&7mli
+    -mail: dennisrexhepi@gmail.com (ma il recupero pw non funziona, quindi occhio)
+    -ultima spunta blocca o meno l'indicizzazione del sito dal motore di ricerca
+
+Infine clicco Installa
+
+Torno su phpMyAdmin e vedo che wp ha creato delle tabelle nel database che gli ho fornito prima
+
+Torno sul localhost di WordPress, accedo e arrivo nella Bacheca di WordPress (finally)
+
+Dato che WordPress è open source, se appare un aggiornamento è meglio farlo
+
+Approfondisci il versionamento 
+(ie v1.0.1; più mi sposto a sx più l'aggiornamento è importante ed è meglio fare un backup)
+
+Plugin suggerito per backup: Duplicator (free con opzione di pagamento)
+
+Nella sezione Impostazioni trovo alcune delle sezioni da modificare eventualmente citate prima.
+
+Una cosa da modificare è: 
+    -Impostazioni -> Discussione -> disattiva 'Permetti l'invio di commenti per i nuovi articoli'
+Reduce di quando WordPress era pensato solo quando faceva girare solo blog (banalmente è una misura contro gli spam)
+
+Su: Impostazioni -> Permalink -> Struttura dei permalink: vado a selezionare Nome articolo al posto di semplice.
+
+WordPress può avere problemi dopo il caricamento di nuovi contenuti nell pagine, se vado sempre su permalink e salvo di 
+nuovo non mi da errore
+
+In Plugin, trovo Hello Dolly, un minimo plugin funzionante.
+
+!Se cancello un plugin dalla cartella, lo cancello anche da WordPress e viceversa.
+
+Il Tema è il responsabile della grafica del sito, ma oggigiorno è più in mano a noi 
+(stesso discorso dei plugin; se aggiungo o tolgo cartelle lo vedo anche dalla bacheca di WordPress)
