@@ -192,3 +192,15 @@ Altri eventuali plugin utili sono di ottimizzazione/cache:
     -WP Fastest Cache è il più semplice per la cache
 
     -W3 Total Cache è molto più lungo da configurare
+
+
+Torniamo sull'editor -> Nuovo articolo (non mi interessa il nome perchè tanto non lo salvo per la prova fatta in classe)
+E' buona norma fare prima uno schema della pagina da visualizzare prima di mettere mano su Wordpress.
+
+
+!!!!!!
+
+        Se mi da fastidio la libreria grafica se uso xampp vado in config -> php.ini -> cerco gd facendo ctrl + f e poi davanti a 
+        extension = gd tolgo il ;
+
+!!!!!!
