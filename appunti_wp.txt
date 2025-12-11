@@ -159,3 +159,36 @@ Fatto questo, se digito https://nomesito viene un'icona della chiave; se non è 
 
 Il plugin in questione è:
     -Really Simple Security – Simple and Performant Security (formerly Really Simple SSL)
+
+Altra opzione che si può abilitare è il 'Riparatore di contenuti misti' nella sez SSL del plugin:
+Se ho una cartella con link al protocollo in http e https, il riparatore ripara le sorgenti e trasmette tutto in https
+Nella sezione 'Hardening' abilito una serie di opzioni per rendere 'la vita più difficile ad un hacker'
+
+Invece il plugin 'Wordfence Security' aggiunge più opzioni di sicurezza, Andrea spesso non lo installa perchè è molto pesante
+Lo scarico se vedo un traffico anomalo, molti accessi falliti o tentativi di breach.
+Mi da ad esempio tempo di blocco e blocco dopo tot di tentativi falliti, ma anche scansione della cartella di Wordpress,
+per impedire backdoor degli hacker (confronta i file sorgente attuali con quelli nativi ed eventualmente segnala differenze)
+
+Altri eventuali plugin utili sono di ottimizzazione/cache:
+
+    -Autoptimize comprime il codice (ma io continuo a scrivere normalmente con spazi e indentature) 
+     Se sto lavorando non lo abilito perchè altrimenti peggioro notevolmente la lettura del codice da browser. 
+     Abilitalo alla fine a lavoro compiuto prima di mettere online il sito.
+     L'obbiettivo nella configurazione è spuntare più voci possibili, ma probabilmente il sito non funzionerà a causa di conflitti 
+     con ad esempio altri plugin. Pian piano de-spunto e vedo qual'è quella che mi da problemi. 
+     ->Un continuo tira e molla fino ad arrivare ad un equilibrio 
+     (di solito danno probllemi css e js a causa di dipendenze dell'ordine, esempio chiamata di funzione prima di dichiararla 
+     per js e nel css ho regole a cascata)
+     Altra fase della configurazione è il Lazyload delle immagini (le carica se c'è bisogno); Guthemberg (nativo di Wordpress)
+     lo fa in automatico e non serve abilitarlo, ma altri editor potrebbero non farlo
+    
+    -Performance Lab è una sorta di raccolta di plugin e funzionalità
+     Uno dei suoi usi è il 'Modern Image Format': la codifica .webp e .avif risparmiano spazio per la codifica delle 
+     immagini, ma hanno una copertura limitata: essendo recente, non è detto che tutti i dispositivi abbiano software o 
+     aggiornamenti in grado di leggere questi formati, di solito 9/10 leggono queste codifiche.
+     Il plugin mi permette di caricare foto in .jpeg o .img e vede se il dispositivo è in grado di leggere un .webp: se si 
+     gliela converte, altrimenti gli manda l'originale in .jpeg/.img
+
+    -WP Fastest Cache è il più semplice per la cache
+
+    -W3 Total Cache è molto più lungo da configurare
