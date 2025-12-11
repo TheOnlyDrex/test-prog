@@ -137,3 +137,25 @@ dove puoi comprare il plugin ad un tasso annuale
     metatitle, metadescription, solo 1 h1, rispettare l'ordine degli h, dimensione del sito, link che re-indicizzano a
     siti autorevoli, e tanti altri parametri conosciuti e sconosciuti influiscono sulla SEO 
 !!!!
+
+
+
+!!!!!!!!!!!!!!!
+
+        http://localhost/test-prog/Wordpress/wp-admin/ per accedere alla bacheca
+
+!!!!!!!!!!!!!!!
+
+
+Ultimo plugin da vedere è sulla sicurezza informatica
+
+Solo i siti vetrina sono esenti dal protocollo https, poichè devono solo mostrare contenuti; tuttavia google da un po'
+di tempo comincia a mettere comunque un etichetta 'non sicuro' se usi ancora il protocollo http (senza la s)
+
+Con Local posso emettere un certificato ssl spuntando un opzione, da xampp non posso farlo
+! Let's Encrypt è gratuito e mi può emettere certificati ssl (spesso incluso nel pacchetto hosting)
+Per verificarlo dal pannello di hosting, vedo se ho una spunta da abilitare; porta via massimo pochi minuti.
+Fatto questo, se digito https://nomesito viene un'icona della chiave; se non è ancora abilitato sbuca un popup rosso
+
+Il plugin in questione è:
+    -Really Simple Security – Simple and Performant Security (formerly Really Simple SSL)
