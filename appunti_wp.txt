@@ -204,3 +204,9 @@ E' buona norma fare prima uno schema della pagina da visualizzare prima di mette
         extension = gd tolgo il ;
 
 !!!!!!
+
+!!!!!!
+
+    Oltre a Wutemberg come editor di wp, c'è anche Divi (dalla lezione di secure coding)
+
+!!!!!!
