@@ -1,0 +1,9 @@
+/.wordpress-org
+/.git
+/.github
+/node_modules
+/assets
+/package-lock.json
+/cypress
+/composer.lock
+/vendor

@@ -207,6 +207,21 @@ E' buona norma fare prima uno schema della pagina da visualizzare prima di mette
 
 !!!!!!
 
-    Oltre a Wutemberg come editor di wp, c'è anche Divi (dalla lezione di secure coding)
+    Oltre a Gutemberg come editor di wp, c'è anche Divi (dalla lezione di secure coding)
 
 !!!!!!
+
+
+Elementor è un plugin che sostituisce l'editor nativo; anche lui usa blocchi e stessa interfaccia. Versione gratuita limitata e gli 
+manca un meccanismo 'peculiare' di Guthemberg: fa un css unico invece di fare tanti mini css per ogni pagina web. (verifica l'informazione)
+
+Parentei sui template:
+Pagina 404 e 2 url diversi sbagliati: la pagina 404 è il template(modello standard della macchina), due url inesistenti sono 2 pagine 
+diverse ma che fanno riferimento sempre allo stesso template (le mie richieste di optional della macchhina)
+Il template decide dove mttere il titolo, ma può non farlo e possiamo metterlo a mano 
+
+Occhio a distinguere bene tra Template (elementi che si ripetono tra le varie pagine) e Contenuto
+
+(tabella gerarchia dei template)
+
+Homepage vuole un template a parte (banalmente non voglio il titolo)
