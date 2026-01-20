@@ -14,7 +14,7 @@ add_filter('block_core_social_link_get_services','add_cer_social_link_phone_serv
 
 
 
-//rivedila dal repo che non sono sicuro
+//rivedila dal repo che non sono sicuro, questo vale per il blocco telefono
 function cer_social_link_render_callback($block_content, $block){
     if (isset($block['attrs']['service'])
         && 'phone'===$block['attrs']['service']){
