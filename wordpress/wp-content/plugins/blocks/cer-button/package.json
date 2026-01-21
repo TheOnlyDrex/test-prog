@@ -1,0 +1,15 @@
+{"name":"imm-gutenberg-boilerplate",
+"version":"1.0.0",
+"description":"How-to: https://developer.wordpress.org/block-editor/how-to-guides/javascript/js-build-setup/",
+"homepage":"https://github.com/andreagaspari/imm-gutenberg-boilerplate#readme",
+"bugs":{"url":"https://github.com/andreagaspari/imm-gutenberg-boilerplate/issues"},
+"repository":{"type":"git","url":"git+https://github.com/andreagaspari/imm-gutenberg-boilerplate.git"},
+"license":"GPL-3.0-or-later",
+"author":"immaginificio",
+"type":"commonjs",
+"main":"build/index.js",
+"scripts":{
+    "start":"wp-scripts start",
+    "build":"wp-scripts build"
+    }
+}

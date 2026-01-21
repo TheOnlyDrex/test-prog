@@ -79,3 +79,6 @@
 
     include_once('blocks/cer-social-phone/index.php');
     include_once('blocks/imm-gutenberg-boilerplate/index.php');
+    include_once('blocks/cer-button');
+    //sai cosa, importa
+    //tanto ciò che vedi non funziona
