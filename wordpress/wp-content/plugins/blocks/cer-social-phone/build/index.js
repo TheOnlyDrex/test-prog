@@ -1,0 +1,1 @@
+(()=>{"use strict";(0,window.wp.blocks.registerBlockVariation)("core/social-link",{name:"phone",title:"Telefono",desription:"Aggiungi un link telefonico",attributes:{service:"phone",label:"Chiama"},scope:["block","inserter"],isActive:["service"]})})();
