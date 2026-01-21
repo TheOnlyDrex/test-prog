@@ -1,8 +1,8 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "title": "Boilerplate Block",
-   	"name": "immaginificio/imm-gutenberg-boilerplate",
+    "title": "Button Block",
+   	"name": "cescot/cer-button",
    	"description": "Boilerplate for Gutenberg Blocks",
     "category": "immaginificio",
 	"icon": "hammer",
