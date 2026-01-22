@@ -48,6 +48,7 @@ registerBlockType( block.name, {
             <InspectorControls key="styles">
 
             </InspectorControls>
+            
            
             <RichText 
                 { ...blockProps}
