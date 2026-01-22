@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "title": "Button Block",
-   	"name": "cescot/cer-button",
-   	"description": "Bottone personalizzato",
+    "title": "My first Block",
+   	"name": "cescot/cer-first-sample",
+   	"description": "First block for Gutenberg",
     "category": "cescot-blocks",
 	"icon": "hammer",
 	"textdomain": "myblocklibrary",
