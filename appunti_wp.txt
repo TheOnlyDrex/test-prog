@@ -225,3 +225,165 @@ Occhio a distinguere bene tra Template (elementi che si ripetono tra le varie pa
 (tabella gerarchia dei template)
 
 Homepage vuole un template a parte (banalmente non voglio il titolo)
+
+blocco contenitore:
+riassunto:
+3 file principali:
+    index.js dentro src, index.php(lato server che comunica a wp che ho informaz per gutenberg; gli dico: registra il blocco comunicato dal
+    block.json nella sua posizione) e block.json(contiene tutte le info ddel blocco) dentro il mio blocco sono gli unici obbligatori 
+    asset sono facoltativi(css o immagini utili)
+
+poi faccio npm init per compilare il mio blocco in js puro con wp scripts
+
+ora appare package.json dove ho le indicazioni per node per la compilazione (rum e start, le dipendenze per wp scripts le ottengo con
+    npm install --save-dev @wordpress/scripts)
+
+ora npm build dove mi esce una cartella con un file js e a volte una cartella con index.asset.php
+nella pic di andrea solo i file verdi vengono caricati, package.json e index.js non occorre caricarli
+
+inizializziamo insieme
+index.php
+    1-  add action ('init', funzione creata/richiamata() {
+            register_block_type(__DIR__); (__DIR__ mi indica il percorso verso il nostro block.json; dir indica la stessa cartella, se è
+            in una sottocartella faccio __DIR__ e concateno col punto la sottocartella)
+        });
+
+        defined('ABSPATH') ll exit; è un controllo che impedisce l'esecuzione del file se lo si accede in maniera diretta
+
+
+block.json
+    è complicato, spesso lo compiuto
+    {
+    "schema": "https://schemas.wp.org/trunk/plugin.json",
+    "apiVersion": 3,
+    "title": "Blocco Griglia",
+    "name": "blocks/cer-grid", (non mettere spazi o underscore, solo trattini al massimo)
+    }
+
+    gli unici obbligatori, posso aggiungere:
+
+    "description": "descrizione che appare nel pannello blocchi di wp. in questo caso mettiamo cescot-blocks",
+
+    "category": "una delle cat di wp. text, media,design,widgets,themes,embed. 
+        se voglio una mia cat devo richiamare le cat, aggiungerla e poi ridarla"
+    
+    "icon": "icone di wp, guarda il loro sito."
+
+    "textdomain": "nome file" si occupa delle tarduzioni
+
+    "editorScript": "file:./build/index.js" posso farlo anche in php ma cosi è più semplice e veloce.
+    ha il percorso a partire della cartella del block.js fino al file indicato che esisterà dopo la prima compilazione
+
+    "viewScript": "file:./assets/js/scripts.js" mi carica un js visibile solo in frontend (ie mi fa partire l'animazione di un carosello da gutenberg o importare una lib
+    i.e. Glide)
+
+    "editorStyle" : "file:./assets/css/style.css",
+
+    "style":[
+        "file:./assets/css/style.css",
+        "file:./assets/css/style-2.css"
+    ],
+
+    "supports":{
+        "anchor": true,
+        "align": true,
+        "color": {
+            "background": true,
+            "text": true,
+            "link":true
+        },
+        "spacing": {
+            "margin": true,
+            "padding": true,
+            "blockGap": true
+        }
+    }
+
+ora apro la cartella del blocco in termminale integrato
+
+1-npm init (mi crea il package.json e ha bisogno di alcune info)
+
+1.1 (Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser  => da terminale integrato se non gira subito)
+
+2 esce
+    This utility will walk you through creating a package.json file.
+    It only covers the most common items, and tries to guess sensible defaults.
+
+    See `npm help init` for definitive documentation on these fields
+    and exactly what they do.
+
+    Use `npm install <pkg>` afterwards to install a package and
+    save it as a dependency in the package.json file.
+
+    Press ^C at any time to quit.
+
+  ora mi fa vedere delle cose che posso compilare, le fondamentali sono:
+  "entry point: (index.js) build/index.js" build/index.js deve essere lo stesso dell'editorScript nel file block.json
+  "test command" sono dei comandi di test per software, se faccio una componente per software esterno lo lascio vuoto e lo facico dopo a mano
+  "license" se faccio qualcosa per me chissene frega ,ma se voglio far pubblicare il plugin devo almeno usare la GPL 2 o superiore
+  "type" devo scrivere module, lo posso anche modificare nel package appena creato
+
+3 vado nel package creato e in "scripts" tolgo "test" e metto:
+    "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build"
+  }
+
+  mi accede ai comandi npm start e npm run build per il pacchetto ottimizzato
+
+4 scrivo 
+    npm install --save-dev @wordpress/scripts 
+
+  crea node_modules da aggiungere in .gitignore
+  (vedi pnpm per la velocità)
+
+5 mi aggiungerà al mio package una voce "devDependences" aka dipendenze di un pacchetto per funzionare correttamente
+
+6 mi crea anche package-lock.json (tutte le sottodipendenze) Questo posso caricarlo nel repo se voglio, dipende da come voglio
+  gestire i pacchetti. "qui funziona, la no" per evitare questo meglio caricare il lock e passa la paura
+
+  file lungo ma è solo testo quindi non è troppo pesante
+
+7 npm start (forse anche run build vedi bene)
+
+8 apro index.js
+    prima cosa registro il blocco con registerBlockType
+
+    includo la sua lib: import {registerBlockType} from '@wordpress/blocks';
+    (è una sottodipendenza in wp-element)
+
+    apri in un js per visualizzare bene i commenti
+
+    registerBlockType(blockMeta.name, /*prende il nome del blocco dal file block.json*/ {
+            title: blockMeta.title,
+            description: blockMeta.description,
+            category: blockMeta.category,
+            icon: blockMeta.icon,
+            edit: (props) =>{
+                const blockProps= useBlockProps per sfruttare le funzionalità native di wp
+                return <div>
+                    <InnerBlocks />
+                </div>
+            },
+            /*funzione freccia
+            posso fare anche un file edit.js e save.js e le importo; 
+            magari fallo solo se sono molto lunghi*/
+            //codice che viene eseguito fichè lavoro nel blocco
+
+            /*esempio di argomento dentro le garffe di edit
+                const date=new Date();
+                return <span>{date.toString()}</span>
+                */
+            save: (props) =>{
+                    return <div {...blockProps}> dicitura che mi dice di aggiugere quelle funzionalità senza sovrascrivere ciò che scrivo
+                        <InnerBlocks.Content />
+                    </div>
+            }
+            //codice che viene eseguito quando pigio salva, entrambe devono aver eun return. il return deve avere solo 1 tag
+            //InnerBlocks permette di inserire altri blocchi dentro questo blocco ma posso usarlo solo una volta
+        }
+
+    )
+
+
+
