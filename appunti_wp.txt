@@ -360,8 +360,8 @@ ora apro la cartella del blocco in termminale integrato
             category: blockMeta.category,
             icon: blockMeta.icon,
             edit: (props) =>{
-                const blockProps= useBlockProps per sfruttare le funzionalità native di wp
-                return <div>
+                const blockProps= = useBlockProps() per sfruttare le funzionalità native di wp
+                return <div {...blockProps}> dicitura che mi dice di aggiugere quelle funzionalità senza sovrascrivere ciò che scrivo
                     <InnerBlocks />
                 </div>
             },
@@ -375,7 +375,7 @@ ora apro la cartella del blocco in termminale integrato
                 return <span>{date.toString()}</span>
                 */
             save: (props) =>{
-                    return <div {...blockProps}> dicitura che mi dice di aggiugere quelle funzionalità senza sovrascrivere ciò che scrivo
+                    return <div {...blockProps}> 
                         <InnerBlocks.Content />
                     </div>
             }
@@ -384,6 +384,72 @@ ora apro la cartella del blocco in termminale integrato
         }
 
     )
+
+    Ora ho un blocco contenitore di blocchi (perché ho lasciato solo InnerBlocks), dopo lo vado ad aggiornare.
+    
+
+    !!!Ricorda di includerlo in my-block-library.php!!!
+
+
+9 Per personalizzare un blocco ho bisogno degli Elementi da impostare
+    scrivo gli attributes e ho un oggetto (ie columns) con i vari attributi
+    ogni attributo ha un type e un default
+    attributes:{
+            "columns":{
+                "type": "number",
+                "default": 3
+            }},
+    nel return metto un tag vuoto con dentro il resto perchè return ritorna solo 1 elemento
+
+    
+    Per farlo apparire nella barra laterale di destra
+
+    <InspectorControls key="settings">
+                    
+        </InspectorControls> 
+    E devo anche importarlo in alto al index.js
+    
+    Devo importare i seguenti componenti:
+    import{PanelBody, RangeControl} from '@wordpress/components';
+    tra le varie opzioni ho:
+
+    <InspectorControls key="settings">
+                    <PanelBody title="Grid settings">
+                        <RangeControl
+                            label="numero di colonne"
+                            value={props.attributes.columns} (valore che devo manipolare)
+                            onChange={
+                                (columns) => {props.setAttributes({columns : newColumns})}
+                            }
+                            />
+                    </PanelBody>
+
+                </InspectorControls>
+    !Non devo importare setAttributes, è nativo.
+    in onChange{(valore)} al posto di valore posso fare anche calcoli
+
+    Dopo onChange metto i valori del mio RangeControl di default:
+        min={1}
+        max={12} (metto 12 poichè è uno dei primi numeri con più divisori , 2-3-4-6)
+        step={1} metto i 'salti' che il valore di colonne deve fare
+        withInputField={true} mostra o meno il campo numerico accanto, con false ha solo il range che scorre
+        marks={true} mostra gli intervalli (trattini spezzettati); con true li prende in auto 
+    
+    Finora ho settato l'attributo, adesso lo uso:
+    creo un css dentro cartella asset, ho la classe fornita da wp quindi la sfrutto e uso una variabile css che posso manipolare da js.
+    dentro index.js con useBlockProps gli dico stile e incollo cio che ho nel css
+        const blockProps=useBlockProps({
+                style: {
+                    '--cer-grid--columns': props.attributes.columns
+                }
+                }); (prima useBlockProps era vuoto)
+                idem anche nel save
+    
+    Ora prova a rendere la grid responsive
+    mettiamo le varianti di desktop, tablet e telefono
+    guarda ciò che ha fatto andrea e controlla tutti i file di cer-grid
+    https://wordpress.github.io/gutenberg/?path=/docs/docs-introduction--page
+
 
 
 
