@@ -3,7 +3,9 @@ import {registerBlockType} from '@wordpress/blocks';
 //controlla l'importazione e non fidarti di copilot, magari vuoi importare qualcosa di omonimo però da un altro pacchetto
 import blockMeta from '../block.json'; //importa il file block.json e lo assegna alla variabile blockMeta (blockMeta nome che decido io)
 import{InnerBlocks, useBlockProps, InspectorControls} from '@wordpress/block-editor';
-import{PanelBody, RangeControl} from '@wordpress/components';
+import{PanelBody, RangeControl, TabPanel} from '@wordpress/components';
+import ResponsiveTabPanel from './ResponsiveTabPanel';
+
 
 registerBlockType(blockMeta.name, /*prende il nome del blocco dal file block.json*/ {
         title: blockMeta.title,
@@ -11,7 +13,15 @@ registerBlockType(blockMeta.name, /*prende il nome del blocco dal file block.jso
         category: blockMeta.category,
         icon: blockMeta.icon,
         attributes:{
-            "columns":{
+            "mobileColumns": {
+                "type": "number",
+                "default": 1
+            },
+            "tabletColumns": {
+                "type": "number",
+                "default": 2
+            },
+            "desktopColumns": {
                 "type": "number",
                 "default": 3
             }
@@ -20,32 +30,81 @@ registerBlockType(blockMeta.name, /*prende il nome del blocco dal file block.jso
         edit: (props) =>{
             const blockProps=useBlockProps({
                 style: {
-                    '--cer-grid--columns': props.attributes.columns
+                '--cer-grid--mob-columns': props.attributes.mobileColumns,
+                '--cer-grid--tablet-columns': props.attributes.tabletColumns,
+                '--cer-grid--desktop-columns': props.attributes.desktopColumns
                 }
             });
             
             return <>
-                <InspectorControls key="settings">
-                    <PanelBody title="Grid settings">
-                        <RangeControl
-                            label="numero di colonne"
-                            value={props.attributes.columns}
-                            onChange={
-                                (newColumns) => {props.setAttributes({columns : newColumns})}
+            <InspectorControls key="settings">
+                <PanelBody title="Grid Settings">
+                    <TabPanel 
+                        tabs={[
+                            {
+                                name: 'mobile',
+                                title: 'Mobile'
+                            },
+                            {
+                                name:'tablet',
+                                title:'Tablet'
+                            },
+                            {
+                                name:'desktop',
+                                title:'Desktop'
                             }
-                            min={1}
-                            max={12}
-                            step={1}
-                            withInputField={true}
-                            
-                            />
-                    </PanelBody>
+                        ]}/>
+                        {(tab)=>{
+                            const tabname=tab.name;
+                            switch(tabname){
+                                case 'mobile':
+                                    return <RangeControl
+                                                label="Numero di colonne (Mobile)"
+                                                value={props.attributes.mobileColumns}
+                                                onChange={
+                                                    (newColumns) => { props.setAttributes({mobileColumns: newColumns})}
+                                                }
+                                                min={1}
+                                                max={12}
+                                                step={1}
+                                                withInputField={false}
+                                            />
 
-                </InspectorControls>
-                <div {...blockProps}>
-                    <InnerBlocks />
-                </div>
-            </>
+                                case 'tablet':
+                                    return <RangeControl
+                                                label="Numero di colonne (Tablet)"
+                                                value={props.attributes.tabletColumns}
+                                                onChange={
+                                                    (newColumns) => { props.setAttributes({tabletColumns: newColumns})}
+                                                }
+                                                min={1}
+                                                max={12}
+                                                step={1}
+                                                withInputField={false}
+                                            />
+                                
+                                case 'desktop':
+                                    return <RangeControl
+                                                label="Numero di colonne (Desktop)"
+                                                value={props.attributes.desktopColumns}
+                                                onChange={
+                                                    (newColumns) => { props.setAttributes({desktopColumns: newColumns})}
+                                                }
+                                                min={1}
+                                                max={12}
+                                                step={1}
+                                                withInputField={false}
+                                            />
+                            }
+                        }}
+                    
+                    
+                </PanelBody>
+            </InspectorControls>
+            <div {...blockProps}>
+                <InnerBlocks />
+            </div>
+        </>;
         },
         /*funzione freccia
         posso fare anche un file edit.js e save.js e le importo; 
@@ -60,7 +119,9 @@ registerBlockType(blockMeta.name, /*prende il nome del blocco dal file block.jso
             
             const blockProps= useBlockProps.save({
                 style: {
-                    '--cer-grid--columns': props.attributes.columns
+                '--cer-grid--mob-columns': props.attributes.mobileColumns,
+                '--cer-grid--tablet-columns': props.attributes.tabletColumns,
+                '--cer-grid--desktop-columns': props.attributes.desktopColumns
                 }
                 });
                 return <>
@@ -70,7 +131,7 @@ registerBlockType(blockMeta.name, /*prende il nome del blocco dal file block.jso
                     </div>
                 </>
         }
-        //codice che viene eseguito quando pigio salva, entrambe devono aver eun return. il return deve avere solo 1 tag
+        //codice che viene eseguito quando premo salva, entrambe devono aver eun return. il return deve avere solo 1 tag
         //InnerBlocks permette di inserire altri blocchi dentro questo blocco ma posso usarlo solo una volta
     }
 

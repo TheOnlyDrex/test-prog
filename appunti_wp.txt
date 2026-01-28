@@ -235,7 +235,7 @@ riassunto:
 
 poi faccio npm init per compilare il mio blocco in js puro con wp scripts
 
-ora appare package.json dove ho le indicazioni per node per la compilazione (rum e start, le dipendenze per wp scripts le ottengo con
+ora appare package.json dove ho le indicazioni per node per la compilazione (run e start, le dipendenze per wp scripts le ottengo con
     npm install --save-dev @wordpress/scripts)
 
 ora npm build dove mi esce una cartella con un file js e a volte una cartella con index.asset.php
@@ -447,9 +447,40 @@ ora apro la cartella del blocco in termminale integrato
     
     Ora prova a rendere la grid responsive
     mettiamo le varianti di desktop, tablet e telefono
+
     guarda ciò che ha fatto andrea e controlla tutti i file di cer-grid
     https://wordpress.github.io/gutenberg/?path=/docs/docs-introduction--page
 
+Vediamo adesso un tab dei controlli, devo creare un componente dedicato che indipendentemente da ciò che gli metterò dentro mi restituisce
+(per ora 3) delle tab.
+
+Uso per partire il componente TabPanel di wp:
+
+                    <TabPanel 
+                        tabs={[
+                            {
+                                name: 'mobile', !Al nome dagli sempre qualcosa di minuscolo e senza spazi 
+                                title: 'Mobile'
+                            },
+                            {
+                                name:'tablet',
+                                title:'Tablet'
+                            },
+                            {
+                                name:'desktop',
+                                title:'Desktop'
+                            }
+                        ]}/>
 
 
+Dopo aver verificato dal file di andrea il motivo poer cui il blocco griglia non si apriva su wp, dobbiambo fare un componente nuovo 
+per la selezione dei colori, sfruttando ColorPalette, ColorPicker e un etichetta per la realizzazione del componente.
 
+
+! useSettings ritorna le impostazioni globali di wp, bisogna solo capire quale impostazione ci serve da mandarle come argomento 
+mi ritorna un array di impostazioni e devo richiedere quello con cardine 0 : [0]
+ora mi ridà 3 array :palette di default, base, eventuali custom ecc. 
+
+! il debug di react è penoso, per capire qualcosa stampa in console l'elemento dubbioso
+
+In ogni caso recupera tutto dal repo di andrea
