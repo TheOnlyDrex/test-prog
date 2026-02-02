@@ -484,3 +484,13 @@ ora mi ridà 3 array :palette di default, base, eventuali custom ecc.
 ! il debug di react è penoso, per capire qualcosa stampa in console l'elemento dubbioso
 
 In ogni caso recupera tutto dal repo di andrea
+
+
+Altri editor rispetto a Gutemberg:
+Elementor: dal punto di vista pratico usa gli shortcodes (posso registrare anche i miei shortcodes e aggiungerli tra i blocchi dell'editor)
+    
+Visual composer: più leggero ma non vedo la preview. Simile a Gutemberg e con più funzionalità.
+    Ha i limiti di una versione gratuita
+
+Ora di piratare (ma legale, causa licenza GPL di wordpress)
+https://gpldl.com/premium-wordpress-woocommerce-for-free/
