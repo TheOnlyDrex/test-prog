@@ -494,3 +494,40 @@ Visual composer: più leggero ma non vedo la preview. Simile a Gutemberg e con p
 
 Ora di piratare (ma legale, causa licenza GPL di wordpress)
 https://gpldl.com/premium-wordpress-woocommerce-for-free/
+comodo se ho 1 progetto o pochi, perchè devo scaricarlo manualmente ogni volta per ogni sito, se tengo su più siti ci sono abbonamenti
+mensili (tipo 37/mese)
+
+
+framework jQuery, come js ma più semplice(?)
+migliora l'interazione sul documento (ie getDocument, il listener)
+getElementById=> $('#id');
+byClassName=>$(".nome_classe);
+funzione per cercare dentro l'elemento find(".classe");
+aggiungo html ad un elemento:
+    lista.html("roba da aggiungere chiuso in tag"); (lista era una var già dichiarata)
+
+$('#id').find(".classe").html("roba da aggiungere chiuso in tag").addClass("nuova_Classe");
+tutte le funzioni ritornano l'elemento corrente 
+(sopra ho preso un elemento per id cercato una classe, aggiunto elemento html e aggiunto classe in più)
+
+
+tra le varie ia, GitHUB Copilot è il miglior servizio per la programmazione (oltre ad usare un altro editor chiamato antigravity)
+copilot permette di scegliere con quale ia interfacciarsi per la richiesta specifica che abbiamo
+ha vari modi di lavoro:
+    Ask: domanda e risposta
+    Edit: gli do il permesso di scrivere su i miei file e alla fine chiede conferma delle modifiche
+        (evita di fidarti alla cieca perchè può sbagliare)
+    Agent: itera più volte nella stessa richiesta e individua tutti i passaggi necessari per arrivare
+        alla soluzione (come prima ho perdita totale del controllo, contesto limitato alla cartella,
+        se esce chiede conferma per uscire o addirittura NON FARGLI ESEGUIRE COMANDI DA TERMINALE)
+più piccole e precise sono le richieste fatte, meglio lavora anche lui; serve strategia
+il flusso ideale è:
+    stabilire i prerequisiti/modelli
+    stabilire strategia
+    fagli scrivere in un readme tutto questo (cosi si ricorda il lavoro)
+    fagli fare piccoli passi
+
+Comodo per operazioni/refactor ripetitivi o per documentare bene il codice
+
+Ulteriore funzionalità: seleziona del codice e appare una lampadina a sx e ti aiuta a riscrivere, oppure
+tasto dx->spiega e apre nella chat una spiegazione
