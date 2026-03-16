@@ -248,7 +248,7 @@ index.php
             in una sottocartella faccio __DIR__ e concateno col punto la sottocartella)
         });
 
-        defined('ABSPATH') ll exit; è un controllo che impedisce l'esecuzione del file se lo si accede in maniera diretta
+        defined('ABSPATH') || exit; è un controllo che impedisce l'esecuzione del file se lo si accede in maniera diretta
 
 
 block.json
