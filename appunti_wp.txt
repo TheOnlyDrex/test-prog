@@ -531,3 +531,5 @@ Comodo per operazioni/refactor ripetitivi o per documentare bene il codice
 
 Ulteriore funzionalità: seleziona del codice e appare una lampadina a sx e ti aiuta a riscrivere, oppure
 tasto dx->spiega e apre nella chat una spiegazione
+
+React 
