@@ -707,7 +707,9 @@ mobile mettine una più piccola (duplica l'elemento)
 -I link identici hanno lo stesso scopo: I link con la stessa destinazione devono avere la stessa descrizione per aiutare gli utenti a comprendere 
 lo scopo dei link e decidere se seguirli o meno
 
--Più altri valori di best practice 
+-Più altri valori di best practice e parte di seo (robots.txt e informati, in particolare agents e sitemap, alcuni plugin la generano in automatico)
+
+-Cura sull'accessibilità: x dipendenti minimo e 1M di fatturato DEVI rispettare i controlli minimi dell'accessibilità 
 
 Se questi elementi sono marcati di rosso o giallo dobbiamo/possimao lavorarci, quelli verdi sono problemi superati
 
