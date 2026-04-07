@@ -533,3 +533,181 @@ Ulteriore funzionalità: seleziona del codice e appare una lampadina a sx e ti a
 tasto dx->spiega e apre nella chat una spiegazione
 
 React 
+
+
+Prova
+
+Partiamo dal principio:
+Nella prova ripartiremo da zero, ma non costruiremo tutto il sito.
+Dobbiamo fare un'analisi e da ciò che emerge facciamo il template della pagina (con header e footer) e poi una pagina vera e propria
+
+Aggiungere elementi:
+-Custom post type 
+modifico il file del tema: momentaneamente ci freghiamo di fare il tema child, modifichiamo direttamente il 2025.
+all'interno del function del tema aggiungiamo in wp-content, themes e tema corrente, modifico il file function:
+in fondo creamo una funzione per registrare il nostro custom post type:
+
+uso la funz di wp register_post_type. in fondo alle documentazioni di wp cerco i commenti e vedo degli esempi (wp developer resources)
+
+textdomainhere metterò li il dominio delle traduzioni (o lo trovo nello style css, aka uso direttamente quello del tema base)
+
+guarda sempre la documentazione ed esempi di documentazione se non ricordi, se usi ia alla cieca c'è rischio di allucinazioni
+
+function my_custom_post_type(){
+    register_post_type ('progetto', array(
+        "label" => array(
+            "name"=>"Progetti",
+            "singular_name"=>"Progetto"
+        ),
+        "public"=>true,
+        "hierarchical"=>false, //riguarda la gerarchia delle pagine (padre-figlio)
+        "exclude_from_search"=>false, //a meno che non voglio nascondere l'elemento o pagina, li lo metto vero 
+        "publicly_queryable"=>false, //solo gli utenti loggati possono vedere
+        "show_ui"=>true,
+        "show_in_menu"=>true, //metti tutto vero e passa la paura
+        "show_in_nav_menus"=>true,
+        "show_in_admin_bar"=>true,
+        "show_in_rest"=>true //fondamentale mettere true cosi che possa essere letto dalle api (causa react poichè Guthemberg lavora cosi)
+        //altre voci sono facoltative, puoi fare copia incolla dall'esempio della documentazione, tranne capability e quella sotto 
+        //in supports metti array con'title', 'editor', 'revisions', 'thumbnail', 'excerpt'(riassunto, se non lo metto mi mette il testo 
+        //intero tagliato), 'custom-fields'(per campi custom, tipo iscrizione all'albo dei medici). di default ho solo titolo ed editor
+        //in taxonomies o metto nell'array 'category' per avere stessa tax delle pagine oppure se voglio una mia oltre che registrare
+        //il blocco devo registrare anche la tax
+        //rewrite mi fa riscrivere il link, di default prende il nome del post (fermati ad incollare solo fino a qua)
+    ));
+    register_taxonomy('categoria_progetto', array(
+        "labels"=> array(
+            nome=> categoria
+            nome singolare=> categoria
+        ),
+        public true
+        hierarchical true
+        show_in_rest true come sopra 
+    )) se voglio una tassonomia custom, ma posso usare tranquillamente una nativa
+}
+
+aggancio la mia funzione alla funzione di inizializzazione delle procedure
+
+add_action('init','my_custom_post_type');
+
+all'interno della bacheca se ho fatto bene ho la voce progetti sotto articoli
+
+Advanced Custom Fields è un plugin (ma non farlo all'esame) che ti permette di fare tutto questo lavoro da interfaccia grafica invece che
+scrivere codice
+
+Ora passiamo alla creazione dei template: faccio il template del post type archive e del singolo progetto che apparirà nell'archivio
+
+aspetto-editor-template-aggiungi template- trovo archivio:progetto e elemento singolo:progetto che vedo solo se ho abilitato il show in rest 
+
+arrivato alla pagina metto in primis header, gruppo (con titolo del contenuto, no blocco titolo e contenuto) e footer. se ho messo immagine in 
+evidenza metto il blocco, se metto una tassonomia posso mettere il blocco della categoria
+
+blocco autore mette tutto compresa la bio, nome autore solo il nome, posso mettere la data dell'articolo
+
+nella pagina degli archivi invece faccio header, gruppo(titolo dell'archivio, query loop (con tipo di query: predefinito),
+ blocco riassunto, immagine in evid, nome autore, categoria, data pubbl ), footer
+
+
+!come esercizio prova a fare una pagina da archivio con head (logo sx, dx home, chi siamo, progetti, contatti), titolo dell'archivio, descrizione,
+query loop con 3 colonne e sotto foot con nome sito, privacy policy e cookie policy e icone social fb, ig e wa 
+
+come testare e gestire l'ottimizzazione di wp:
+
+-Google page speed: https://pagespeed.web.dev/
+Core Web Vitals per determinare se il sito è prestante: 3 metriche principali.
+
+! Vale solo da mobile, le stat da pc non contano nulla
+
+Le cause sono svariate, più in basso ho una diagnosi in tempo reale (mi interessa solo l'esperienza utente, le prestazioni servono solo a me
+per mettere le mani e ottimizzare. Lui usa volutamente un caso critico per dare i punteggi, fai l'hover sui parametri per capire meglio)
+Basta che sopra sia verde. Sotto mi riassume le criticità potenziali
+
+(domanda tipo: trova 2 problemi e come li potresti risolvere)
+
+Tra le ottimizzazioni da fare: 
+
+-Richieste di blocco del rendering : rendering bloccato da certi file (ie css di tutta la pagina quando da smartphone ho una pagina enorme. 
+Mi interessa il css solo della parte alta, del footer lo posso caricare dopo. tra i plugin che lo fanno sono critical css come wp rocket, wp compress)
+comunque serve un plugin qualunque esso sia che estragga il css critico da caricare
+
+-Utilizza durate della memorizzazione nella cache efficienti: uso la cache per velocizzare le ricerche. non serve fare richieste continue al db
+per una pagina che non varia più. Salvo una copia freezata della pagina lato client. Questo lavoro lo fa qualsivoglia plugin di cache e definire 
+il criterio di salvataggio di cache (spesso quelli non efficienti non sono nemmeno nostri, a volte sono di terze parti: su quest'ultimi non possiamo
+farci niente. Se sbuca un nostro problema butta un plugin)
+
+-Migliora il caricamento delle immagini: scegliere il miglior formato per le immagini (WebP, AVIF). L'unico problema loro è l'incopatibilità del 
+formato nei dispositivi vecchi (safari pre 2020).
+Soluzione: plugin che converte le immagini in WebP e che decide se darmi a seconda della versione del browser il file jpeg o WebP, 
+come WebP Express
+
+Oppure banalmente un immagine troppo grande: carico un immagine con dimensioni opportune (non metto una immagine 1920px se ho un buchetto da 400px)
+
+Layout shift: se non metto larghezza e altezza nel tag html rischio lo spostamento del layout quando si carica la pagina, con wp non ti devi 
+preoccupare perchè ha già di base il lazyload 
+
+-Albero delle dipendenze di rete: dipendenze di caricamento dei file, se ho una cascata (una dipendenza dopo l'altra) rischio di caricare molti 
+file prima di caricare ciò che voglio. 
+Anche qui ho plugin di ottimizzazione che accorpano i vari css e js in due unici file per pagina 
+(ci metto meno a caricare 1 file da 10mb che caricare 10 file da 1mb, perchè tra un file e l'altro ho la solito palleggio di domanda e risposta
+tra client e server)
+Spesso il problema è il font, quindi magari uso un font base per caricare la pagina e poi aggiorno il testo col font personalizzato a caricamento
+completato (non è ottimale rendere bloccante il caricamento di una pagina per una cosa semplice come un font)
+
+-Responsabili delle variazioni del layout: se ho spostamenti importanti devo capire il motivo
+Magari metto un placeholder, altezza e lunghezza o nei casi del carosello un display flex per evitare spostamenti marcati
+
+-Suddivisione LCP: mi parla di come posso migliorare l'LCP (uno dei parametri chiave visti sopra)
+Time to First Byte: lato server
+Ritardo del caricamento delle risorse (immagine troppo grossa)
+Durata caricamento risorse (placeholder nero-placeholder sgranato-immagine effettiva)
+Ritardo di rendering dell'elemento
+
+-codice di terze parti: lista di codice di terze parti, lo vedi e valuti se è tutto essenziale. A volte non è possibile metterci mano 
+(ad esempio prova a togliere da un ecommerce il pagamento con paypal, vedi che succede)
+Mentre posso lavorare su un video di yt: non chiamo di default il video che mi appesantisce il caricamento: metto una pic di placeholder 
+e solo al click carico il video. Anche per questo ci sono plugin ie WP youtube lyte: metti nel link non https ma httpv, ciò suggerisce a wp
+di usare il plugin (oppure con shortcode).
+
+-Minimizza JavaScript e Minimizza CSS: come nei blocchi facevamo la run build per compattare il file,mentre in test uso run dev.
+Con opportuni plugin:
+    Tutte le variabili vengono rinominate con lettere singole per massimizzare il risparmio, 
+    Compattano le andate a capo
+    Tolgono lo spazio tra le righe o uno spazio davanti una parentesi
+Entrambi valgono per Js che per CSS (wp rocket, compress, autoptimize)
+
+-Riduci il codice JavaScript e Css inutilizzato: Guthemberg lo risolve da solo, prima ogni pagina doveva caricare solo il suo css preciso.
+I blocchi caricano il loro rispettivo js o css solo s equei blocchi esistono in quella pagina specifica (grazie React)
+Per risolvere o fai un file css e js unico per ogni pagina (buona fortuna) o uso altri metodi, come guthemberg 
+
+-Evita payload di rete enormi: non mettere file troppo grandi senza motivo, come ad esempio usa un'immagine standard da pc, mentre per 
+mobile mettine una più piccola (duplica l'elemento)
+
+-Ottimizza le dimensioni del DOM: un DOM di grandi dimensioni aumenta la memoria utilizzata.
+
+-JavaScript duplicato: es ho messo la stessa risorsa con nomi diversi e carico 2 volte inutilmente uno stesso file
+
+-Carattere visualizzato: swap del font al caricamento del mio custom
+
+-Adattamento dinamico forzato del contenuto: discorso del carosello che smuove la pagina
+
+-Suddivisione INP: trovi i link che non reagiscono
+
+-Ottimizza l'area visibile per i dispositivi mobili: il metatag della responsività.
+    <meta name="viewport" content="width=device-width, initial-scale=1"> Senza questi ho il caricamento piccolissimo della pagina e devo zoomare
+    a mano 
+
+-Tempo di esecuzione JavaScript: autoesplicativo
+
+-Il lavoro del thread principale è ridotto al minimo: fasi di caricamento nel dettaglio. Se riesco a migliorare il flusso salvo ritardo 
+
+-Gli elementi immagine hanno width e height esplicite
+
+-I touch target non hanno dimensioni o spaziatura sufficienti: bottoni troppo piccoli
+
+-I link identici hanno lo stesso scopo: I link con la stessa destinazione devono avere la stessa descrizione per aiutare gli utenti a comprendere 
+lo scopo dei link e decidere se seguirli o meno
+
+-Più altri valori di best practice 
+
+Se questi elementi sono marcati di rosso o giallo dobbiamo/possimao lavorarci, quelli verdi sono problemi superati
+
